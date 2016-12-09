@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:metadata>
+    <f:viewParam name="user" value="#{rewardsManager.user}" />
+    <f:event type="preRenderView" listener="#{rewardsManager.init}" />
+</f:metadata>
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+	
+		<h:form rendered="#{rewardsManager.result == null}">
+			<h:panelGrid columns="2">
+			    <h:outputLabel>Recipient:</h:outputLabel>
+			    <h:inputText value="#{rewardsManager.employeeReward.recipient}" required="true" readonly="true"/>
+			    
+			    <h:outputLabel>Reward Value:</h:outputLabel>
+			    <h:inputText value="#{rewardsManager.employeeReward.rewardAmount}" required="true" />
+			    
+			    <h:outputLabel>Reward Reason:</h:outputLabel>
+			    <h:inputText value="#{rewardsManager.employeeReward.rewardReason}" required="true" />  
+		    </h:panelGrid>
+		    	<h:commandButton value="submit" action="#{rewardsManager.startEmployeeRewards}" />
+		    	<h:messages />
+			    <h:outputText value="#{rewardsManager.result}" />
+		</h:form>
+		
+		<h:form rendered="#{not empty rewardsManager.result}">
+			<h:panelGrid columns="2">
+				<h:outputLabel>Result:</h:outputLabel>
+			    <h:inputText value="#{rewardsManager.result}" required="true" readonly="true"/>
+			    
+			    <h:commandButton value="New Reward" action="#{rewardsManager.reset}" />
+		    </h:panelGrid>    	
+		</h:form>
+		<a href="javascript:history.back(-1)">Go Back</a>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>mainsys-jbpm-demo</context-root>
+</jboss-web>

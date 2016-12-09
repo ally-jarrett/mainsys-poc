@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:metadata>
+    <f:viewParam name="user" value="#{task.user}" />
+    <f:event type="preRenderView" listener="#{task.init}" />
+</f:metadata>
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+	<h1>Task Management Page for #{task.user}</h1>
+	<h3> Current Assigned Tasks: #{task.userTasks.size()} </h3>
+	
+		<h:form rendered="#{not empty task.userTasks}">
+			<h:dataTable id="utasktable" value="#{task.userTasks}" var="t">
+		      <h:column>
+		        <f:facet name="header">
+		          <h:outputText value="Id" />
+		        </f:facet>
+		        <h:outputText id="id" value="#{t.id}" />
+		      </h:column>
+		      <h:column>
+		        <f:facet name="header">
+		          <h:outputText value="Name" />
+		        </f:facet>
+		        <h:outputText id="name" value="#{t.name}" />
+		      </h:column>
+		      <h:column>
+		        <f:facet name="header">
+		          <h:outputText value="State" />
+		        </f:facet>
+		        <h:outputText id="status" value="#{t.status}" />
+		      </h:column>
+		      <h:column>
+		        <f:facet name="header">
+		          <h:outputText value="Process Instance ID" />
+		        </f:facet>
+		        <h:outputText id="processId" value="#{t.processInstanceId}" />
+		      </h:column>
+		      <h:column>
+		        <f:facet name="header">
+		          <h:outputText value="Actual Owner ID" />
+		        </f:facet>
+		        <h:outputText id="actualOwner" value="#{t.actualOwnerId}" />
+		      </h:column>
+		      <h:column>
+		        <f:facet name="header">
+		          <h:outputText value="Actions" />
+		        </f:facet>
+					<h:commandButton action="#{task.completeTask(t.id)}" value="Approve Task" rendered="#{t.actualOwnerId == task.user}"/>
+					<h:commandButton action="#{task.claimTask(t.id, task.user)}" value="Claim" rendered="#{t.status == 'Ready'}"/>
+					<h:commandButton action="#{task.releaseTask(t.id, task.user)}" value="Release" rendered="#{t.status == 'Reserved'}"/>
+					<h:commandButton action="#{task.completeTask(t.id)}" value="Start" rendered="#{t.status == 'Reserved'}"/>
+					<h:commandButton action="#{task.completeTask(t.id)}" value="View" rendered="#{t.status == 'InProgress'}"/>
+		      </h:column>
+			</h:dataTable>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+			<h1>Current Employee / Manager / Approver DB Structure</h1>
+			<h:dataTable id="employeetable" value="#{rewardsManager.employees}" var="e">
+				<h:column>
+					<f:facet name="header">
+	               Name
+	            </f:facet>
+	            	<!-- <h:link outcome="/test.xhtml?user=#{u.name}">#{u.name}</h:link> -->
+					<h:outputText id="empName" value="#{e.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+	               Group
+	            </f:facet>
+					<h:outputText id="empId" value="#{e.groups}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+	               Type
+	            </f:facet>
+					<h:outputText id="empType" value="#{e.type}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+	               Actions
+	            </f:facet>
+					<ul>
+						<li>
+							<h:link outcome="/createReward.xhtml?user=#{e.name}">Create Reward</h:link>
+						</li>
+						<li> View Rewards History </li>
+					</ul>
+				</h:column>
+			</h:dataTable>
+		<br/>
+		<h:dataTable id="managertable" value="#{rewardsManager.managers}" var="m">
+			<h:column>
+				<f:facet name="header">
+               Name
+            </f:facet>
+            	<!-- <h:link outcome="/test.xhtml?user=#{u.name}">#{u.name}</h:link> -->
+				<h:outputText id="manName" value="#{m.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+               Groups
+            </f:facet>
+				<h:outputText id="manId" value="#{m.groups}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+		       Type
+            </f:facet>
+				<h:outputText id="manType" value="#{m.type}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+               Actions
+            </f:facet>
+				<ul>
+					<h:link outcome="/tasks.xhtml?user=#{m.name}">View Reward Approval Tasks</h:link>
+				</ul>
+			</h:column>
+		</h:dataTable>
+		<br/>
+		<h:dataTable id="approverstable" value="#{rewardsManager.approvers}" var="a">
+			<h:column>
+				<f:facet name="header">
+               Name
+            </f:facet>
+            	<!-- <h:link outcome="/test.xhtml?user=#{u.name}">#{u.name}</h:link> -->
+				<h:outputText id="appName" value="#{a.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+               Groups
+            </f:facet>
+				<h:outputText id="appId" value="#{a.groups}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+               Type
+            </f:facet>
+				<h:outputText id="appType" value="#{a.type}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+               Actions
+            </f:facet>
+				<ul>
+					<h:link outcome="/tasks.xhtml?user=#{a.name}">View Reward Approval Tasks</h:link>
+				</ul>
+			</h:column>
+		</h:dataTable>
+		<a href="javascript:history.back(-1)">Go Back</a>
+	</ui:define>
+</ui:composition>
+</html>
