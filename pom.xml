@@ -75,6 +75,17 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+            <groupId>org.jboss.ejb3</groupId>
+            <artifactId>jboss-ejb3-ext-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
+            <groupId>com.sun.istack</groupId>
+            <artifactId>istack-commons-runtime</artifactId>
+            <version>2.21.0.redhat-1</version>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
@@ -131,6 +142,49 @@
 		  <artifactId>mainsys-jbpm-demo</artifactId>
 		  <version>1.0</version>
         </dependency>
+    
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-frontend-jaxws</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-transports-http</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-api</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-bindings-soap</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-bindings-xml</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-core</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-databinding-jaxb</artifactId>
+		    <version>2.7.18.SP1-redhat-1</version>
+		    <scope>provided</scope>
+		</dependency>
         
         <!-- Needed for running tests (you may also use TestNG) -->
         <dependency>
@@ -139,7 +193,7 @@
             <scope>test</scope>
         </dependency>
         
-        <!-- Override Transitive Depency issue with compiling BPMN -->
+        <!-- Override Transitive Dependency issue with compiling BPMN -->
         <dependency>
 	      <groupId>com.sun.xml.bind</groupId>
 	      <artifactId>jaxb-core</artifactId>
@@ -164,6 +218,8 @@
         <!-- Maven will append the version to the finalName (which is the 
             name given to the generated war, and hence the context root) -->
         <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
